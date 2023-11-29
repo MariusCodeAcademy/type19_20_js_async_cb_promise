@@ -2,12 +2,42 @@
 console.log('posts.js file was loaded');
 
 // taikomes
+const appEl = document.getElementById('app');
 
 const posts = [
   { title: 'Post One', body: 'This is post One body' },
   { title: 'Post Two', body: 'This is post Two body' },
 ];
 
+// functions
 function printPosts() {
+  appEl.innerHTML = '';
   // sugeneruoti li elmenentus su antraste title, ir textu body
+  posts.forEach((pObj) => {
+    const liEl = document.createElement('li');
+    liEl.innerHTML = `<strong>${pObj.title}:</strong> ${pObj.body} `;
+    appEl.append(liEl);
+  });
 }
+
+// create post funkcija kuti ideda nauja posta i pos masyva
+function createPost(newPostObj) {
+  setTimeout(() => {
+    posts.push(newPostObj);
+    console.log('created Post');
+  }, 700);
+}
+
+// gauti postus imituojam kad truka 1.5sek juos gauti
+function getPosts() {
+  setTimeout(() => {
+    printPosts();
+  }, 500);
+}
+
+// app eiga
+const thirdPost = { title: 'Post Three', body: 'This is post Three body' };
+
+createPost(thirdPost);
+
+getPosts();
