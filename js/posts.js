@@ -21,10 +21,11 @@ function printPosts() {
 }
 
 // create post funkcija kuti ideda nauja posta i pos masyva
-function createPost(newPostObj) {
+function createPost(newPostObj, cb) {
   setTimeout(() => {
     posts.push(newPostObj);
     console.log('created Post');
+    cb();
   }, 700);
 }
 
@@ -38,6 +39,9 @@ function getPosts() {
 // app eiga
 const thirdPost = { title: 'Post Three', body: 'This is post Three body' };
 
-createPost(thirdPost);
+// problema neatsispausdina paskutinis post
+// createPost(thirdPost);
+// getPosts();
 
-getPosts();
+/// callback sprendimas
+createPost(thirdPost, getPosts);
