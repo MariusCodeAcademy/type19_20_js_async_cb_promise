@@ -4,6 +4,12 @@ console.log('callback.js file was loaded');
 // setTimeout(fn, laikas ms)
 // setInterval(fn, laikas ms)
 
+console.log('1');
+setTimeout(() => {
+  console.log('2');
+}, 2000);
+console.log('3');
+
 function getHeader(callback) {
   setTimeout(() => {
     console.log('<Header />');
