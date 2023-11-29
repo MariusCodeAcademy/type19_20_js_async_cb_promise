@@ -59,10 +59,23 @@ createPost(thirdPost).then(() => getPosts());
 let str1 = new Promise((resolve, reject) => {
   setTimeout(() => {
     let value = '    James     ';
+    resolve(value);
   }, 500);
 });
 
 // gauti panaudojant str1 reikmme value
+str1
+  .then((gryzoIsPromiseResolve) => {
+    console.log('promise reiksme', gryzoIsPromiseResolve);
+    return gryzoIsPromiseResolve.trim();
+  })
+  .then((reiksmeBeTarpeliu) => {
+    console.log('reiksmeBeTarpeliu ===', reiksmeBeTarpeliu);
+    return reiksmeBeTarpeliu.toUpperCase();
+  })
+  .then((reiksmeDidziosiomRaidem) => {
+    console.log('reiksmeDidziosiomRaidem ===', reiksmeDidziosiomRaidem);
+  });
 // isconsolinti ja
 // grazinti i kita .then ja be tarpeliu sonuose
 // grazinti i kita .then ja diziosiom raidem
