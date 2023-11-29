@@ -21,12 +21,15 @@ function printPosts() {
 }
 
 // create post funkcija kuti ideda nauja posta i pos masyva
-function createPost(newPostObj, cb) {
-  setTimeout(() => {
-    posts.push(newPostObj);
-    console.log('created Post');
-    cb();
-  }, 700);
+function createPost(newPostObj) {
+  // grazinti promise
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      posts.push(newPostObj);
+      console.log('created Post');
+      resolve();
+    }, 700);
+  });
 }
 
 // gauti postus imituojam kad truka 1.5sek juos gauti
@@ -44,4 +47,22 @@ const thirdPost = { title: 'Post Three', body: 'This is post Three body' };
 // getPosts();
 
 /// callback sprendimas
-createPost(thirdPost, getPosts);
+// createPost(thirdPost, getPosts);
+
+/// promisify sprendimas
+// panaudoti promise
+// createPost(thirdPost).then(() => {
+//   getPosts();
+// });
+createPost(thirdPost).then(() => getPosts());
+
+let str1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    let value = '    James     ';
+  }, 500);
+});
+
+// gauti panaudojant str1 reikmme value
+// isconsolinti ja
+// grazinti i kita .then ja be tarpeliu sonuose
+// grazinti i kita .then ja diziosiom raidem
